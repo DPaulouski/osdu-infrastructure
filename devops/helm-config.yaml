@@ -14,6 +14,7 @@ global:
     identity: <osduIdentityName>
     identity_id: <osduClientId>
     keyvault: <keyVaultName>
+    appid: <aadClientId>
 
   ################################################################################
   # Specify the Ingress Settings
@@ -34,3 +35,11 @@ global:
   #
   image:
     branch: master
+
+  ################################################################################
+  # Specify the istio specific values
+  # based64 encoded username and password
+  #
+  istio:
+    username: <base64_encoded>
+    password: <base64_encoded>

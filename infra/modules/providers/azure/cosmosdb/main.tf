@@ -22,6 +22,7 @@ resource "azurerm_cosmosdb_account" "cosmosdb" {
   resource_group_name = data.azurerm_resource_group.cosmosdb.name
   offer_type          = "Standard"
   kind                = var.kind
+  tags                = var.resource_tags
 
   enable_automatic_failover = var.automatic_failover
 
@@ -52,5 +53,5 @@ resource "azurerm_cosmosdb_sql_container" "cosmos_collections" {
   database_name       = var.sql_collections[count.index].database_name
   resource_group_name = data.azurerm_resource_group.cosmosdb.name
   partition_key_path  = var.sql_collections[count.index].partition_key_path
-  throughput          = var.sql_collections[count.index].throughput
+  throughput          = var.sql_collections[count.index].throughput != 0 ? var.sql_collections[count.index].throughput : null
 }
